@@ -16,9 +16,10 @@
 # • Permitir a atualização/modificação da quantidade de créditos disponíveis.
 # • Não pode haver locação sem ao menos 5 créditos disponíveis.
 
-contas = [["EVA", 1234]]
-registro_de_uso = []
-
+contas = [["EVA", 1234, 5]]
+registro_horario = []
+registro_data = []
+preco_hora = 5
 
 #   Função que cria um titulo personalizado
 def titulo(texto):
@@ -63,16 +64,76 @@ while opcao != 3:
         if(login == contas[contador][0] and senha == contas[contador][1]):
             while opcao != 4:
                 titulo("MENU DE USUÁRIO(a) [ BikePY ]")
-                menu("Alugar uma Bike [1hora]", "Relatório de Uso", "Depositar Crédito", "Encerrar Sessão")
+                menu(["Alugar uma Bike [1hora]", "Relatório de Uso", "Depositar Crédito", "Encerrar Sessão"])
                 opcao = int(input("Escolha uma Opção:"))
+                if(opcao == 1):
+                    if(contas[usuario][2] >= 5):
+                        horario = []
+                        titulo("Serviço BikePY")
+                        print("AVISO: SERÁ COBRADO A DIFERENÇA SE PASSAR DE ALGUNS MINUTOS, DEPOIS DE 1 HORA!!!")
+                        print("Alugando uma BIKE [ 1 hora ]")
+                        #   Solicitando o ANO, MÊS e DIA Iniciais
+                        dia_inicial = int(input("Digite o dia inicial: "))
+                        mes_inicial = int(input("Digite o mês inicial: "))
+                        ano_inicial = int(input("Digite o ano inicial: "))
+
+                        #   Solicitando a HORA, Minutos Iniciais
+                        hora_inicial = int(input("Digite Quantas Horas São [HH]: "))
+                        minutos_inicial = int(input("Digite Quantos Minutos São [MM]: "))
+                        horario.append([hora_inicial, minutos_inicial])
+
+                        titulo("Finalizando Serviço BikePY")
+                        #   Solicitando o ANO, MÊS e Dia finais
+                        dia_final = int(input("Digite o dia final: "))
+                        mes_final = int(input("Digite o mês final: "))
+                        ano_final = int(input("Digite o ano final: "))
+
+                        #   Solicitando a HORA, MINUTOS finais
+                        hora_final = int(input("Digite Quantas Horas São [HH]: "))
+                        minutos_final = int(input("Digite Quantos Minutos São [MM]: "))
+                        horario.append([hora_final, minutos_final])
+
+                        registro_horario.append(horario)
+
+                        #   12 = Mêsses do ano
+                        #   30 = Dias
+                        #   24 = Horas
+                        #   60 = Minutos
+                        #   Calculo para ver a diferença de tempo inicial e final
+                        calculando_dias_iniciais = (ano_inicial * 12 * 30 * 24 * 60) + (mes_inicial * 30 * 24 * 60) + (dia_inicial * 24 * 60)
+                        calcular_minutos_iniciais = (hora_inicial * 60) + minutos_inicial
+
+                        calcular_dias_finais = (ano_final * 12 * 30 * 24 * 60) + (mes_final * 30 * 24 * 60) + (dia_final * 24 * 60)
+                        calcular_minutos_final = (hora_final * 60) + minutos_final
+
+                        calcular_minutos = (calcular_dias_finais + calcular_minutos_final) - (calculando_dias_iniciais + calcular_minutos_iniciais)
+
+                        #   Calcula o preço do serviço
+                        if(calcular_minutos <= 60 and calcular_minutos > 0):
+                            calcular_preco = 5
+                        elif(calcular_minutos > 60 and calcular_minutos > 0):
+                            calcular_preco = (calcular_minutos / 60 )* 5
+                        
+                        contas[usuario][2] = contas[usuario][2]- calcular_preco
+                        print("Preço do Serviço: R$", calcular_preco)
+                        print("Créditos Atuais:", contas[usuario][2])
+
+                    else:
+                        print("SALDO INSUFICIENTE!!")
+                        print("Preço do Serviço de Bike: R$", preco_hora)
+                        print("Créditos Atuais: R$", contas[usuario][2])
+                        if(contas[usuario][2] < 0):
+                            print("SALDO NEGATIVO!!! NA RECARGA O VALOR SERÁ COBRADO!!!")
 
     elif(opcao == 2):
         titulo("REGISTRAR-SE [ BikePY ]")
         #   Criando novo(a) Usuário
         login = input("Digite seu Login: ")
         senha = int(input("Digite Sua Senha: "))
-        creditos = float(input("Digite Quantos Créditos Gostaria de Depositar: R$"))
-        contas.append([login, senha])
+        saldo_creditos = -1
+        while saldo_creditos < 0:
+            saldo_creditos = float(input("Digite Quantos Créditos Gostaria de Depositar: R$"))
+        contas.append([login, senha, saldo_creditos])
 
     elif(opcao != 1 and opcao != 2 and opcao != 3):
         print("=======================================")
