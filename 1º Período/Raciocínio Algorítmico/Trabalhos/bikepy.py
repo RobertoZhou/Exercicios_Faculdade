@@ -96,6 +96,10 @@ def data_em_minutos(dia, mes, ano):
     #       1 hora = 60 min
     #       1 ano = 12 messes
     #       1 mês = 30 dias
+    #   1. (Transforma DIA em horas e horas em minutos)
+    #   2. (Transforma MÊS em dias, dias em horas e horas em minutos)
+    #   3. (Transforma ANO em messes, messes em dias, dias em horas e horas em minutos)
+    #   4. E soma tudo dando a data em minutos.
     calculo = (dia * 24 * 60) + (mes * 30 * 24 * 60) + (ano * 12 * 30 * 24 * 60)
     return calculo                                        
 
@@ -192,29 +196,33 @@ while opcao != 3:
                         horario = [0] * 2
                         horario[0] = horario_inicial[0] + ":" + horario_inicial[1]
                         horario[1] = horario_final[0] + ":" + horario_final[1]
-                        registro_horario.append(horario)
 
                         #   Calculando a diferença de minutos entre o horario inicial e final
                         calcular_minutos = (data_devolucao + horario_devolucao) - (data_alugel + horario_alugel)
                         #   Cobra o valor do serviço de 1 hora
                         #   Caso o usuário passe alguns minutos a mais será cobrado a diferença
                         print("=======================================")
-                        if(calcular_minutos >= 1 and calcular_minutos <= 60):
-                            preco_cobrado = 1
-                            usuario[2] = usuario[2] - preco_cobrado
-                            print("Preço Do Serviço: R$", preco_cobrado)
-                            print("Créditos Atuais: R$", usuario[2])
-                        elif(calcular_minutos > 60):
-                            preco_cobrado = (calcular_minutos / 60) * 5
-                            usuario[2] = usuario[2] - preco_cobrado
-                            print("Preço Do Serviço: R$", preco_cobrado)
-                            print("Créditos Atuais: R$", usuario[2])
+                        if(calcular_minutos >= 1):
+                            registro_horario.append(horario)
+                            if(calcular_minutos >= 1 and calcular_minutos <= 60):
+                                preco_cobrado = 1
+                                usuario[2] = usuario[2] - preco_cobrado
+                                print("Preço Do Serviço: R$", preco_cobrado)
+                                print("Créditos Atuais: R$", usuario[2])
+                            elif(calcular_minutos > 60):
+                                preco_cobrado = (calcular_minutos / 60) * 5
+                                usuario[2] = usuario[2] - preco_cobrado
+                                print("Preço Do Serviço: R$", preco_cobrado)
+                                print("Créditos Atuais: R$", usuario[2])
+
                         else:
-                            print("DATA ou HORÁRIO, Informado Invalido!!!")
-                            print("VOLTANDO AO MENU!!!")
-                    elif(usuario[2] == 0 and usuario[2] < 5):
-                        print("SALDO INSUFICIENTE!!!")
-                    else:
+                                print("DATA ou HORÁRIO, Informado Invalido!!!")
+                                print("VOLTANDO AO MENU!!!")
+                    elif(usuario[2] >= 0 and usuario[2] < 5):
+                        print("Preço do Serviço [1 HORA]: R$", preco_hora)
+                        print("Créditos Atuais: R$", usuario[2])
+                        print("CRÉDITOS INSUFICIENTE!!!")
+                    if(usuario[2] < 0):
                         #   Caso o Usuário fique com Saldo Negativo um aviso será exibido
                         print("CRÉDITO NEGATIVO!!!")
                         print("AVISO: NA PROXIMA RECARGA O VALOR SERÁ DESCONTADO!!!")
