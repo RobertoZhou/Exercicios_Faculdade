@@ -155,7 +155,7 @@ while opcao != 3:
             while opcao != 4:
                 #   Menu de usuário
                 titulo("MENU USUÁRIO [BikePY]")
-                lista_opcao = ["Utilizar Serviço", "Vizualizar Histórico", "Recarregar Créditos", "Encerrar Sessão"]
+                lista_opcao = ["Utilizar Serviço", "Visualizar Histórico", "Recarregar Créditos", "Encerrar Sessão"]
                 opcao = menu(lista_opcao)
                 if(opcao == 1):
                     titulo("UTILIZANDO O SERVIÇO [BikePY]")
@@ -205,12 +205,12 @@ while opcao != 3:
                         if(calcular_minutos >= 1):
                             registro_horario.append(horario)
                             if(calcular_minutos >= 1 and calcular_minutos <= 60):
-                                preco_cobrado = 1
+                                preco_cobrado = preco_hora
                                 usuario[2] = usuario[2] - preco_cobrado
                                 print("Preço Do Serviço: R$", preco_cobrado)
                                 print("Créditos Atuais: R$", usuario[2])
                             elif(calcular_minutos > 60):
-                                preco_cobrado = (calcular_minutos / 60) * 5
+                                preco_cobrado = (calcular_minutos / 60) * preco_hora
                                 usuario[2] = usuario[2] - preco_cobrado
                                 print("Preço Do Serviço: R$", preco_cobrado)
                                 print("Créditos Atuais: R$", usuario[2])
