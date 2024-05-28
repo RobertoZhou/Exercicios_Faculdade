@@ -78,8 +78,8 @@ def perguntar_horario():
     minuto = -1
     lista = []
     while hora < 0 or minuto < 0:
-        hora = int(input("Digite as Horas Atuais [DD]: "))
-        minuto = int(input("Digite os Minutos Atuais [MM]: "))
+        hora = int(input("Digite as Horas Atuais [dd]: "))
+        minuto = int(input("Digite os Minutos Atuais [mm]: "))
         if(hora < 0 or minuto < 0):
             print("ERRO!!! HORA:MINUTOS INFORMADO INVÁLIDO!!!")
     lista.append(hora)
@@ -162,7 +162,7 @@ while opcao != 3:
                     if(usuario[2] >= 5):
                         print("Preço: R$", preco_hora, "[1 HORA]")
                         print("AVISO: Se o preço ultrapassar alguns minutos será cobrada a diferença!!!")
-                        print("As DATAS e HORÁRIOS Digitar Somente Números!!!")
+                        print("As DATAS e HORÁRIOS Digitar Somente Números, no formato CORRETO!!!")
                         #   Sistema de utilização do serviço
                         #       Solicitando o dia, mês e ano da retirada da bike
                         print("=======================================")
