@@ -7,7 +7,7 @@ preco_hora = 5
 #   titulo:
 #       entrada: titulo
 #       saida: cria um titulo personalizado
-def titulo(texto):
+def imprimir_titulo(texto):
     print("=======================================")
     print("     ", texto)
     print("=======================================")
@@ -121,7 +121,7 @@ def transforma_str(lista):
 
 
 #   Registrando o(a) usuário(a), salvando o login, senha e créditos
-titulo("REGISTRAR-SE [BikePY]")
+imprimir_titulo("REGISTRAR-SE [BikePY]")
 login = str(input("Digite Seu Login: "))
 senha = str(input("Digite Sua Senha: "))
 creditos = -1
@@ -135,14 +135,14 @@ conta = criar_conta(login, senha, creditos)
 opcao = 0
 while opcao != 3:
     #   Menu princial
-    titulo("MENU [BikePY]")
+    imprimir_titulo("MENU [BikePY]")
     lista_opcao = ["Login", "Esqueci minha senha", "Encerrar Programa"]
     opcao = menu(lista_opcao)
 
     if(opcao == 1):
         #   Sistema de login com 3 tentativas de login
         for contador in range(3, -1, -1):
-            titulo("LOGIN [BikePY]")
+            imprimir_titulo("LOGIN [BikePY]")
             login = input("Digite Seu Login: ")
             senha = input("Digite Sua Senha: ")
             if(login == usuario[0] and senha == usuario[1]):
@@ -154,11 +154,11 @@ while opcao != 3:
         if(login == usuario[0] and senha == usuario[1]):
             while opcao != 4:
                 #   Menu de usuário
-                titulo("MENU USUÁRIO [BikePY]")
+                imprimir_titulo("MENU USUÁRIO [BikePY]")
                 lista_opcao = ["Utilizar Serviço", "Visualizar Histórico", "Recarregar Créditos", "Encerrar Sessão"]
                 opcao = menu(lista_opcao)
                 if(opcao == 1):
-                    titulo("UTILIZANDO O SERVIÇO [BikePY]")
+                    imprimir_titulo("UTILIZANDO O SERVIÇO [BikePY]")
                     if(usuario[2] >= 5):
                         print("Preço: R$", preco_hora, "[1 HORA]")
                         print("AVISO: Se o preço ultrapassar alguns minutos será cobrada a diferença!!!")
@@ -169,7 +169,7 @@ while opcao != 3:
                         data_inicial = perguntar_data()
                         print("=======================================")
                         horario_inicial = perguntar_horario()
-                        titulo("ENCERRANDO SERVIÇO [BikePY]")
+                        imprimir_titulo("ENCERRANDO SERVIÇO [BikePY]")
                         data_final = perguntar_data()
                         print("=======================================")
                         horario_final = perguntar_horario()
@@ -229,7 +229,7 @@ while opcao != 3:
 
                 elif(opcao == 2):
                     #   Imprimi a data e o horario de uso do serviço
-                    titulo("VISUALIZAR HISTÓRICO [BikePY]")
+                    imprimir_titulo("VISUALIZAR HISTÓRICO [BikePY]")
                     if(len(registro_horario) == 0):
                         print("Nenhum Registro Salvo no Momento")
                     else:
@@ -240,7 +240,7 @@ while opcao != 3:
 
                 #   Sistema de deposito de crédito
                 elif(opcao == 3):
-                    titulo("RECARREGAR CRÉDITOS [BikePY]")
+                    imprimir_titulo("RECARREGAR CRÉDITOS [BikePY]")
                     creditos = -1
                     while creditos < 0:
                         creditos = float(input("Digite Quantos Créditos Gostaria de Recarregar: R$"))
@@ -257,7 +257,7 @@ while opcao != 3:
 
     #   Dica da senha caso o usuário(a) esqueça sua senha dando o primeiro e ultimo digito da senha
     elif(opcao == 2):
-        titulo("DICA DE SENHA [BikePY]")
+        imprimir_titulo("DICA DE SENHA [BikePY]")
         login = str(input("Digite Seu Login: "))
         dica = dica_senha(login)
         print("Voltando Para o Menu!!!")
