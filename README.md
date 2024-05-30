@@ -1,2 +1,2 @@
-# Exercicios_Faculdade
- Exercícios da Faculdade(PUCPR)
+# Faculdade BSI - Bacharelado em Sistemas de Informação (PUCPR)
+Faculdade BSI - Bacharelado em Sistemas de Informação (PUCPR)
