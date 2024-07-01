@@ -1,0 +1,26 @@
+.description {
+    display: flex;
+    margin-left: 7%;
+}
+
+#title2 {
+    margin-left: 30%;
+}
+
+.film {
+    display: flex
+}
+
+.image-film {
+    width: 450px;
+    height: 450px;
+    display: flex;
+}
+
+.sinopse {
+    margin-top: 110px;
+}
+
+p {
+    width: 600px;
+}
